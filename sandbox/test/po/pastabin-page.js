@@ -1,5 +1,5 @@
-import Page from "./page.js";
-class AddNews extends Page {
+const Page = require("./page.js");
+class PastebinPage extends Page {
   get selectExpiration() {
     return $(
       "//span[@id='select2-postform-expiration-container']/following-sibling::span"
@@ -16,7 +16,10 @@ class AddNews extends Page {
   get pastName() {
     return $("#postform-name");
   }
-  async login(username, password) {
+  async open() {
+    super.open("https://pastebin.com");
+  }
+  async addPastaBinPage(username, password) {
     await this.selectExpiration.click();
     await this.select10.waitForDisplayed();
     await this.select10.waitForDisplayed({
@@ -27,8 +30,7 @@ class AddNews extends Page {
     });
     await $("//li[text()='10 Minutes']").click();
     await this.newPost.setValue(username);
-    await this.newPost.setValue(password);
+    await this.pastName.setValue(password);
   }
 }
-
-export default new AddNews();
+module.exports = PastebinPage;

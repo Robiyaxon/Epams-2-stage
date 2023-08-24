@@ -49,7 +49,9 @@ async function automateScript() {
 
   //
 
-  const operatingSystem = await driver.wait(until.elementLocated(By.id(`select_111`)));
+  const operatingSystem = await driver.wait(
+    until.elementLocated(By.id(`select_111`))
+  );
   await operatingSystem.click();
   const operatingSystemOption = await driver.wait(
     until.elementLocated(By.id(`select_option_104`))
@@ -58,7 +60,9 @@ async function automateScript() {
 
   //
 
-  const instanceType = await driver.wait(until.elementLocated(By.id(`select_125`)));
+  const instanceType = await driver.wait(
+    until.elementLocated(By.id(`select_125`))
+  );
   await instanceType.click();
   const instanceTypeOption = await driver.wait(
     until.elementLocated(By.id(`select_option_285`))
@@ -83,7 +87,9 @@ async function automateScript() {
 
   //
 
-  const datacenterLocation = await driver.wait(until.elementLocated(By.id(`select_138`)));
+  const datacenterLocation = await driver.wait(
+    until.elementLocated(By.id(`select_138`))
+  );
   await datacenterLocation.click();
   const datacenterLocationOption = await driver.wait(
     until.elementLocated(By.id(`select_option_136`))

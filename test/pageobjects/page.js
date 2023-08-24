@@ -1,13 +1,6 @@
-/**
-* main page object containing all methods, selectors and functionality
-* that is shared across all page objects
-*/
+import { browser } from "@wdio/globals";
 export default class Page {
-    /**
-    * Opens a sub page of the page
-    * @param path path of the sub page (e.g. /path/to/page.html) 
-    */
-    open (path) {
-        return browser.url(`https://cloud.google.com/${path}`)
-    }
+  constructor() {this.title = "My Page";}
+  async open() {
+    await browser.url("https://pastebin.com");}
 }

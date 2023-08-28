@@ -1,4 +1,4 @@
-const Page = require("./page");
+const Page = require("../page");
 class ComputeEnginePage extends Page {
   get devSiteFrame() {
     return $("//devsite-iframe/iframe");
@@ -40,12 +40,20 @@ class ComputeEnginePage extends Page {
       "//form[@name='ComputeEngineForm']//button[@type='button'][normalize-space()='Add to Estimate']"
     );
   }
-
+  get clickEmailButton() {
+    return $(`//button[@title="Email Estimate"]`);
+  }
+  get addEmail() {
+    return $("//input[@ng-model='emailQuote.user.email']");
+  }
+  get buttonEmail() {
+    return $("//button[contains(text(),'Send Email')]    ");
+  }
   async open() {
     return super.open("https://cloud.google.com/");
   }
 
-  async enterText(text, quantity) {
+  async enterText(text, quantity, email) {
     await browser.switchToFrame(await this.devSiteFrame);
     await browser.switchToFrame(await this.myFrame);
     await this.inputField.waitForDisplayed({ timeout: 2000 });
@@ -76,6 +84,18 @@ class ComputeEnginePage extends Page {
     //
     await this.clickButton.waitForDisplayed({ timeout: 5000 });
     await this.clickButton.click();
+    //
+    await this.clickEmailButton.waitForDisplayed({ timeout: 5000 });
+    await this.clickEmailButton.waitForClickable({ timeout: 5000 });
+    await this.clickEmailButton.click();
+    //
+
+    await this.addEmail.waitForDisplayed({ timeout: 5000 });
+    await this.addEmail.setValue(email); // Changed from "addEmail.addValue(email)"
+
+    //
+
+    await this.buttonEmail.click();
   }
 }
 

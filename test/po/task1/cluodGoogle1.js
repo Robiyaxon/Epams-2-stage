@@ -1,4 +1,4 @@
-const Page = require("./page");
+const Page = require("../page");
 class CloudGoogle extends Page {
   get searchBox() {
     return $("input[name='q']");

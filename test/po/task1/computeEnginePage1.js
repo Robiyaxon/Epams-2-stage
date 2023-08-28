@@ -40,11 +40,6 @@ class ComputeEnginePage extends Page {
       "//form[@name='ComputeEngineForm']//button[@type='button'][normalize-space()='Add to Estimate']"
     );
   }
-
-  async open() {
-    return super.open("https://cloud.google.com/");
-  }
-
   async enterText(text, quantity) {
     await browser.switchToFrame(await this.devSiteFrame);
     await browser.switchToFrame(await this.myFrame);
@@ -61,18 +56,15 @@ class ComputeEnginePage extends Page {
     await this.operatingSystemOption.waitForDisplayed({ timeout: 5000 });
     await this.operatingSystemOption.click();
     //
-    //
     await this.datacenterLocation.waitForDisplayed({ timeout: 5000 });
     await this.datacenterLocation.click();
     await this.datacenterLocationOption.waitForDisplayed({ timeout: 5000 });
     await this.datacenterLocationOption.click();
-
     //
     await this.commitedUsage.waitForDisplayed({ timeout: 5000 });
     await this.commitedUsage.click();
     await this.commitedUsageOption.waitForDisplayed({ timeout: 5000 });
     await this.commitedUsageOption.click();
-
     //
     await this.clickButton.waitForDisplayed({ timeout: 5000 });
     await this.clickButton.click();

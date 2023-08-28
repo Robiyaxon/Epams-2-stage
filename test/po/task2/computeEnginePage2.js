@@ -49,10 +49,6 @@ class ComputeEnginePage extends Page {
   get buttonEmail() {
     return $("//button[contains(text(),'Send Email')]    ");
   }
-  async open() {
-    return super.open("https://cloud.google.com/");
-  }
-
   async enterText(text, quantity, email) {
     await browser.switchToFrame(await this.devSiteFrame);
     await browser.switchToFrame(await this.myFrame);
@@ -69,18 +65,15 @@ class ComputeEnginePage extends Page {
     await this.operatingSystemOption.waitForDisplayed({ timeout: 5000 });
     await this.operatingSystemOption.click();
     //
-    //
     await this.datacenterLocation.waitForDisplayed({ timeout: 5000 });
     await this.datacenterLocation.click();
     await this.datacenterLocationOption.waitForDisplayed({ timeout: 5000 });
     await this.datacenterLocationOption.click();
-
     //
     await this.commitedUsage.waitForDisplayed({ timeout: 5000 });
     await this.commitedUsage.click();
     await this.commitedUsageOption.waitForDisplayed({ timeout: 5000 });
     await this.commitedUsageOption.click();
-
     //
     await this.clickButton.waitForDisplayed({ timeout: 5000 });
     await this.clickButton.click();
@@ -89,14 +82,10 @@ class ComputeEnginePage extends Page {
     await this.clickEmailButton.waitForClickable({ timeout: 5000 });
     await this.clickEmailButton.click();
     //
-
     await this.addEmail.waitForDisplayed({ timeout: 5000 });
-    await this.addEmail.setValue(email); // Changed from "addEmail.addValue(email)"
-
+    await this.addEmail.setValue(email);
     //
-
     await this.buttonEmail.click();
   }
 }
-
 module.exports = new ComputeEnginePage();

@@ -1,4 +1,4 @@
-const pastebinPage = require("../po/pastabinTask");
+const pastebinPage = require("../po/pastebinTask");
 describe("Pestbin service", () => {
   it("should open home page", async () => {
     let name = `git config --global user.name "New Sheriff in Town"

@@ -1,4 +1,4 @@
-const pastebinPage = require("../po/pastabinTask");
+const pastebinPage = require("../po/pastebinTask");
 describe("Pestbin service", () => {
   it("should open home page", async () => {
     await pastebinPage.open();

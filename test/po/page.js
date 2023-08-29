@@ -1,6 +1,6 @@
 class Page {
-  async open() {
-    await browser.url("https://cloud.google.com/");
+  async open(path) {
+    await browser.url(path);
   }
 }
 module.exports = Page;

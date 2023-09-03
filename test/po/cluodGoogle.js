@@ -1,4 +1,4 @@
-const Page = require("../page");
+const Page = require("./page");
 class CloudGoogle extends Page {
   get searchBox() {
     return $("input[name='q']");
@@ -8,6 +8,7 @@ class CloudGoogle extends Page {
   }
   async searchInCloudGoogle(searchText) {
     await this.open();
+    
     await this.searchBox.waitForExist({ timeout: 2000 });
     await this.searchBox.setValue(searchText);
     await this.searchBox.addValue("\uE006");

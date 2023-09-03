@@ -1,4 +1,4 @@
-const Page = require("../page");
+const Page = require("./page");
 class ComputeEnginePage extends Page {
   get devSiteFrame() {
     return $("//devsite-iframe/iframe");
@@ -10,10 +10,17 @@ class ComputeEnginePage extends Page {
     return $("//input[@id='input-0']");
   }
   get quantityInput() {
-    return $("#input_99");
+    return $("//input[@ng-model='listingCtrl.computeServer.quantity']");
   }
   get instanceBlank() {
-    return $("#input_100");
+    return $("//input[@ng-model='listingCtrl.computeServer.label']");
+  }
+
+  get operatingSystem() {
+    return $("//md-select[@ng-model='listingCtrl.computeServer.os']");
+  }
+  get operatingSystemOption() {
+    return $("#select_option_102");
   }
 
   get vmClass() {
@@ -21,12 +28,6 @@ class ComputeEnginePage extends Page {
   }
   get vmClassOption() {
     return $("#select_option_115");
-  }
-  get operatingSystem() {
-    return $("#select_112");
-  }
-  get operatingSystemOption() {
-    return $("#select_option_101");
   }
   get gpuSistem() {
     return $(`//md-checkbox[@aria-label='Add GPUs']    `);
@@ -41,7 +42,7 @@ class ComputeEnginePage extends Page {
     return $(`//md-select[@placeholder='Local SSD']`);
   }
   get localSSDOption() {
-    return $(`#select_option_479`);
+    return $(`//md-option[contains(., '1x375 GB')]`);
   }
   get datacenterLocation() {
     return $("#select_132");
@@ -69,7 +70,7 @@ class ComputeEnginePage extends Page {
     //
     await this.inputField.waitForDisplayed({ timeout: 2000 });
     await this.inputField.click();
-    await this.inputField.setValue(text);
+    await this.inputField.addValue(text);
     //
     await this.quantityInput.waitForDisplayed({ timeout: 5000 });
     await this.quantityInput.scrollIntoView(true);
@@ -79,15 +80,15 @@ class ComputeEnginePage extends Page {
     await this.instanceBlank.scrollIntoView(true);
     await this.instanceBlank.setValue("leave blank");
     //
-    await this.vmClass.waitForDisplayed({ timeout: 5000 });
-    await this.vmClass.click();
-    await this.vmClassOption.waitForDisplayed({ timeout: 5000 });
-    await this.vmClassOption.click();
-    //
     await this.operatingSystem.waitForDisplayed({ timeout: 5000 });
     await this.operatingSystem.click();
     await this.operatingSystemOption.waitForDisplayed({ timeout: 5000 });
     await this.operatingSystemOption.click();
+    //
+    await this.vmClass.waitForDisplayed({ timeout: 5000 });
+    await this.vmClass.click();
+    await this.vmClassOption.waitForDisplayed({ timeout: 5000 });
+    await this.vmClassOption.click();
     //
     await this.gpuSistem.waitForDisplayed({ timeout: 5000 });
     await this.gpuSistem.click();
@@ -108,15 +109,18 @@ class ComputeEnginePage extends Page {
     //
     await this.clickButton.waitForDisplayed({ timeout: 5000 });
     await this.clickButton.click();
-    //
-    await this.clickEmailButton.waitForDisplayed({ timeout: 5000 });
-    await this.clickEmailButton.waitForClickable({ timeout: 5000 });
-    await this.clickEmailButton.click();
-    //
-    await this.addEmail.waitForDisplayed({ timeout: 5000 });
-    await this.addEmail.setValue(email);
-    //
-    await this.buttonEmail.click();
+
+    if (email) {
+      await this.clickEmailButton.waitForDisplayed({ timeout: 5000 });
+      await this.clickEmailButton.waitForClickable({ timeout: 5000 });
+      await this.clickEmailButton.click();
+      //
+      await this.addEmail.waitForDisplayed({ timeout: 5000 });
+      await this.addEmail.setValue(email);
+      //
+      await this.buttonEmail.click();
+    }
   }
 }
+
 module.exports = new ComputeEnginePage();

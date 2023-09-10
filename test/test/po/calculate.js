@@ -64,9 +64,36 @@ class ComputeEnginePage extends Page {
   get buttonEmail() {
     return $("//button[contains(text(),'Send Email')]    ");
   }
+  get chekInbox() {
+    return $("#cprnd");
+  }
+  get totalMonthlyCost() {
+    return $(" //h3)[2]");
+  }
+  get openEmailPage() {
+    return $("#cprnd");
+  }
+  get chekInbox() {
+    return $("//button/span[normalize-space()='Check Inbox']");
+  }
+  get totalMonthlyCost() {
+    return $("(//h3)[2]");
+  }
+  get totalMonthlyCostGoogle() {
+    return $("//md-list-item/div[@class='ng-binding']");
+  }
+  get iframeEmil() {
+    return $("#ifnoinb");
+  }
+  get ifmail() {
+    return $("#ifmail");
+  }
   async enterText(text, quantity, email) {
     await browser.switchToFrame(await this.devSiteFrame);
     await browser.switchToFrame(await this.myFrame);
+    // await browser.switchToFrame(await this.iframeEmil);
+    // await browser.switchToFrame(await this.ifmail);
+    //
     //
     await this.inputField.waitForDisplayed({ timeout: 2000 });
     await this.inputField.click();

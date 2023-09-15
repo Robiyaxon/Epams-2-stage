@@ -55,8 +55,5 @@ describe("Google Cloude Test!!", () => {
       totalMonthlyCostText.replace("USD", "").trim()
     );
     await expect(googleCost).toEqual(totalMonthlyCostText);
-
-    //screenshot
-    browser.saveScreenshot("./screenshot.png");
   });
 });
